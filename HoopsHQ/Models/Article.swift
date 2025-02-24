@@ -48,7 +48,7 @@ struct Article: Codable, Equatable, Identifiable {
 }
 
 extension Article {
-    //For preview testing
+    //Array of articles of preview testing
     static var previewData: [Article] {
         let previewDataURL = Bundle.main.url(forResource: "news", withExtension: "json")!
         let data = try! Data(contentsOf: previewDataURL)
