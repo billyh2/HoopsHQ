@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchTabView: View {
     
-    @StateObject var searchVM = ArticleSearchViewModel()
+    @StateObject var searchVM = ArticleSearchViewModel.shared
     
     var body: some View {
         NavigationView {
@@ -17,7 +17,7 @@ struct SearchTabView: View {
                 .overlay(overlayView)
                 .navigationTitle("Search")
         }
-        .searchable(text: $searchVM.searchQuery)
+        .searchable(text: $searchVM.searchQuery) { suggestionsView }
         .onChange(of: searchVM.searchQuery) { newValue in
             if newValue.isEmpty {
                 searchVM.phase = .empty
@@ -41,6 +41,11 @@ struct SearchTabView: View {
         case .empty:
             if !searchVM.searchQuery.isEmpty {
                 ProgressView()
+            } else if !searchVM.history.isEmpty {
+                SearchHistoryListView(searchVM: searchVM) { newValue in
+                    searchVM.searchQuery = newValue
+                }
+                
             } else {
                 EmptyPlaceholderView(text: "Type your query to search from NewsAPI", image: Image(systemName: "magnifyingglass"))
             }
@@ -55,7 +60,23 @@ struct SearchTabView: View {
         }
     }
     
+    @ViewBuilder
+    private var suggestionsView: some View {
+        ForEach(["Swift", "Covid-19", "BTC", "PS5", "iOS 15"], id: \.self) { text in
+            Button {
+                searchVM.searchQuery = text
+            } label: {
+                Text(text)
+            }
+        }
+    }
+    
     private func search() {
+        let searchQuery = searchVM.searchQuery.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !searchQuery.isEmpty {
+            searchVM.addHistory(searchQuery)
+        }
+        
         async {
             await searchVM.searchArticle()
         }
@@ -64,11 +85,9 @@ struct SearchTabView: View {
 
 struct SearchTabView_Previews: PreviewProvider {
     
-    @StateObject static var searchVM = ArticleSearchViewModel()
-    
+    @StateObject static var searchVM = ArticleSearchViewModel.shared
     static var previews: some View {
         SearchTabView()
-            .environmentObject(searchVM)
     }
 }
 
