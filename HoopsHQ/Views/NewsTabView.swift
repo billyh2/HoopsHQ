@@ -25,15 +25,13 @@ struct NewsTabView: View {
     //display news list
     @ViewBuilder
     private var overlayView: some View {
-        Group {
-            switch articleNewsVM.phase {
-            case.empty:
-                ProgressView() //spinning to indicate fetching article
-            case.success(let articles) where articles.isEmpty: EmptyPlaceholderView(text: "No Articles", image: nil)
-            case.failure(let error):
-                RetryView(text: error.localizedDescription, retryAction: refreshTask)
-            default: EmptyView()
-            }
+        switch articleNewsVM.phase {
+        case.empty:
+            ProgressView() //spinning to indicate fetching article
+        case.success(let articles) where articles.isEmpty: EmptyPlaceholderView(text: "No Articles", image: nil)
+        case.failure(let error):
+            RetryView(text: error.localizedDescription, retryAction: refreshTask)
+        default: EmptyView()
         }
     }
     
@@ -70,7 +68,11 @@ struct NewsTabView: View {
 }
 
 struct NewsTabViewPreview: PreviewProvider {
+    
+    @StateObject static var articleBookmarkVM = ArticleBookmarkViewModel.shared
+    
     static var previews: some View {
         NewsTabView(articleNewsVM: ArticleNewsViewModel(articles: Article.previewData))
+            .environmentObject(articleBookmarkVM)
     }
 }

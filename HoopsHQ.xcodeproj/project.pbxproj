@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		410EBE042D75867700120E9E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 410EBE032D75867700120E9E /* Config.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		410EBE032D75867700120E9E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4184D4BD2D6C069300BC6D9F /* HoopsHQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoopsHQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -45,6 +50,7 @@
 		4184D4B42D6C069300BC6D9F = {
 			isa = PBXGroup;
 			children = (
+				410EBE032D75867700120E9E /* Config.xcconfig */,
 				4184D4BF2D6C069300BC6D9F /* HoopsHQ */,
 				4184D4BE2D6C069300BC6D9F /* Products */,
 			);
@@ -122,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				410EBE042D75867700120E9E /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +147,7 @@
 /* Begin XCBuildConfiguration section */
 		4184D4CA2D6C069500BC6D9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 410EBE032D75867700120E9E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -201,6 +209,7 @@
 		};
 		4184D4CB2D6C069500BC6D9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 410EBE032D75867700120E9E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -264,6 +273,7 @@
 				DEVELOPMENT_TEAM = KN63DP4T7J;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HoopsHQ/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -304,6 +314,7 @@
 				DEVELOPMENT_TEAM = KN63DP4T7J;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HoopsHQ/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
